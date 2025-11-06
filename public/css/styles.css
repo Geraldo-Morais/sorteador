@@ -1,0 +1,285 @@
+:root {
+    --bg: #0b1220;
+    --card: #0f172a;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --primary: #6366f1;
+    --primary-900: #4f46e5;
+    --danger: #ef4444;
+    --success: #10b981;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Tema vermelho “inimigo secreto” */
+.theme-evil {
+    --bg: #16090c;
+    --card: #1d0c10;
+    --text: #ffe4e6;
+    --muted: #fda4af;
+    --primary: #ef4444;
+    --primary-900: #b91c1c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: radial-gradient(1200px 600px at 80% -20%, rgba(99, 102, 241, 0.25), transparent 60%), radial-gradient(1000px 500px at -10% 0%, rgba(16, 185, 129, 0.2), transparent 50%), var(--bg);
+    color: var(--text);
+}
+
+.theme-evil body,
+body.theme-evil {
+    background: radial-gradient(1000px 500px at 90% -10%, rgba(239, 68, 68, 0.25), transparent 60%), radial-gradient(900px 500px at -10% 10%, rgba(88, 28, 135, 0.25), transparent 50%), var(--bg);
+}
+
+.container {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    padding: 20px 14px;
+}
+
+.app-header {
+    text-align: center;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.app-header .subtitle {
+    margin: 6px 0 0;
+    color: var(--muted);
+}
+
+.userbar {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.badge {
+    background: rgba(99, 102, 241, 0.15);
+    color: #c7d2fe;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+.card {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+}
+
+.form {
+    display: grid;
+    gap: 14px;
+}
+
+.form-group {
+    display: grid;
+    gap: 6px;
+}
+
+label {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+input {
+    background: #0b1327;
+    color: var(--text);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 10px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color .15s ease;
+    font-size: 16px; /* evita zoom em iOS */
+}
+
+input:focus {
+    border-color: var(--primary);
+}
+
+.btn {
+    appearance: none;
+    border: none;
+    padding: 14px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    min-height: 48px; /* alvo de toque confortável */
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-900);
+}
+
+.btn-evil {
+    background: var(--primary);
+    color: #fff;
+    border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+.btn-evil:hover {
+    background: var(--primary-900);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.btn-ghost:hover {
+    border-color: var(--primary);
+    color: var(--text);
+}
+
+.error {
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    padding: 10px 12px;
+    border-radius: 10px;
+}
+
+.error:empty {
+    display: none;
+}
+
+.status {
+    text-align: center;
+    margin-bottom: 12px;
+    color: var(--muted);
+}
+
+.progress {
+    margin-top: 8px;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.completed {
+    margin-top: 8px;
+    text-align: left;
+}
+
+.completed ul {
+    margin: 6px 0 0;
+    padding-left: 18px;
+}
+
+.completed li {
+    color: var(--text);
+}
+
+.draw {
+    display: grid;
+    gap: 6px;
+    justify-items: center;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 4px 0 0;
+}
+
+.result {
+    margin-top: 16px;
+}
+
+.hidden {
+    display: none;
+}
+
+.result-card {
+    background: #0b1327;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    padding: 18px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.result-name {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 6px 0 0;
+    color: #e9d5ff;
+    word-break: break-word;
+}
+
+.card-evil {
+    border-color: rgba(248, 113, 113, 0.35);
+}
+
+.final-hero {
+    text-align: center;
+    display: grid;
+    gap: 10px;
+}
+
+.final-emoji {
+    font-size: 40px;
+}
+
+.label {
+    color: var(--muted);
+    margin: 0;
+}
+
+.note {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 10px 0 0;
+}
+
+.app-footer {
+    text-align: center;
+    color: var(--muted);
+}
+
+@media (min-width: 640px) {
+    .app-header h1 {
+        font-size: 36px;
+    }
+    .card { padding: 24px; }
+    .result-name { font-size: 28px; }
+}
+
+/* Safe areas iOS */
+@supports (padding: max(0px)) {
+    .container {
+        padding-left: max(14px, env(safe-area-inset-left));
+        padding-right: max(14px, env(safe-area-inset-right));
+        padding-top: max(20px, env(safe-area-inset-top));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}
