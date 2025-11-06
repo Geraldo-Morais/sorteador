@@ -11,6 +11,16 @@ const resetBtn = document.getElementById("resetBtn");
 const completedWrap = document.getElementById("completedWrap");
 const completedList = document.getElementById("completedList");
 
+function fetchWithTimeout(resource, options = {}) {
+    const { timeout = 15000 } = options;
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    return fetch(resource, { ...options, signal: controller.signal })
+        .finally(() => clearTimeout(id));
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
 logoutBtn.addEventListener("click", () => {
     clearToken();
     window.location.href = "./";
@@ -91,11 +101,21 @@ drawBtn.addEventListener("click", async () => {
     try {
         if (!API_BASE_URL) throw new Error("API_BASE_URL não configurada");
         const token = getToken();
-        const resRaw = await fetch(`${API_BASE_URL}?path=draw`, {
+        let resRaw = await fetchWithTimeout(`${API_BASE_URL}?path=draw`, {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
             body: new URLSearchParams({ token: `Bearer ${token}` })
         });
+        // Retry rápido em caso de 429 (limite Apps Script) ou abort (frio)
+        if (resRaw.status === 429 || resRaw.type === 'opaqueredirect') {
+            await sleep(800);
+            resRaw = await fetchWithTimeout(`${API_BASE_URL}?path=draw`, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+                body: new URLSearchParams({ token: `Bearer ${token}` }),
+                timeout: 20000
+            });
+        }
         const res = await resRaw.json();
         if (!resRaw.ok || res.error) throw new Error(res.error || `Erro ${resRaw.status}`);
         resultSection.classList.remove("hidden");
