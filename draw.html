@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amigo Secreto - Sorteio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="theme-evil">
+  <div class="container">
+    <header class="app-header">
+      <h1>👿 Inimigo Secreto</h1>
+      <p class="subtitle">Realize seu sorteio... se tiver coragem 🔥</p>
+      <div class="userbar">
+        <span id="currentUser" class="badge"></span>
+        <button id="logoutBtn" class="btn btn-ghost">Sair</button>
+      </div>
+    </header>
+
+    <main class="card">
+      <section id="statusSection" class="status">
+        <p id="statusText">Carregando seu status...</p>
+        <div id="progress" class="progress hidden">
+          <span id="progressText"></span>
+          <button id="resetBtn" class="btn btn-ghost hidden">Resetar sorteio (admin)</button>
+          <div id="completedWrap" class="completed hidden">
+            <p class="label">Quem já sorteou:</p>
+            <ul id="completedList"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="drawSection" class="draw">
+        <button id="drawBtn" class="btn btn-evil">Fazer meu sorteio 😈</button>
+        <p class="hint">Você só verá seu resultado. Guarde com cuidado.</p>
+      </section>
+
+      <section id="resultSection" class="result hidden">
+        <div class="result-card">
+          <p class="label">Você tirou:</p>
+          <p id="resultName" class="result-name"></p>
+          <p class="note">Este resultado ficará disponível novamente ao entrar com seu login.</p>
+        </div>
+      </section>
+
+      <p id="drawError" class="error" role="alert" aria-live="polite"></p>
+    </main>
+
+    <footer class="app-footer">
+      <small>Registros ficam apenas no backend (horário, ip aproximado).</small>
+    </footer>
+  </div>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/session.js"></script>
+  <script src="./js/draw.js"></script>
+</body>
+</html>
+
+
