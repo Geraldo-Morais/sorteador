@@ -114,7 +114,8 @@ input {
     padding: 14px 16px;
     outline: none;
     transition: border-color .15s ease;
-    font-size: 16px; /* evita zoom em iOS */
+    font-size: 16px;
+    /* evita zoom em iOS */
 }
 
 input:focus {
@@ -128,7 +129,8 @@ input:focus {
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
-    min-height: 48px; /* alvo de toque confortável */
+    min-height: 48px;
+    /* alvo de toque confortável */
 }
 
 .btn-primary {
@@ -270,8 +272,14 @@ input:focus {
     .app-header h1 {
         font-size: 36px;
     }
-    .card { padding: 24px; }
-    .result-name { font-size: 28px; }
+
+    .card {
+        padding: 24px;
+    }
+
+    .result-name {
+        font-size: 28px;
+    }
 }
 
 /* Safe areas iOS */
